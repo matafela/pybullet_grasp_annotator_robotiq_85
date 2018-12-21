@@ -6,4 +6,4 @@ control the position and orientation of a robotiq gripper, also the gripper open
 pip install pybullet
 
 ### run
-python robotic_85_test
+python robotic_85_test.py
