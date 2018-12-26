@@ -1,117 +1,118 @@
 <?xml version="1.0"?>
 
 <robot name="robotiq_85_gripper">
-   <!-- control -->
-  <link name="x_control">
+  <!-- control -->
+  <link name="base_link">
     <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
   </link>
 
   <joint name="center_x" type="prismatic">
-    <parent link="x_control"/>
+    <parent link="base_link"/>
     <child link="y_control"/>
     <axis xyz="1 0 0"/>
-    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.5"/>
+    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
   </joint>
 
   <link name="y_control">
     <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
   </link>
 
   <joint name="center_y" type="prismatic">
     <parent link="y_control"/>
     <child link="z_control"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.5"/>
+    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
   </joint>
 
   <link name="z_control">
     <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
   </link>
 
   <joint name="center_z" type="prismatic">
     <parent link="z_control"/>
-    <child link="roll_control"/>
-    <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="0" upper="1" velocity="0.5"/>
-  </joint>
-
-  <link name="roll_control">
-    <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
-  </link>
-
-  <joint name="gripper_roll" type="revolute">
-    <parent link="roll_control"/>
-    <child link="pitch_control"/>
-    <axis xyz="1 0 0"/>
-    <limit lower="-3.14" upper="3.14" velocity="100.0" effort="1000"/>
-  </joint>
-
-  <link name="pitch_control">
-    <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
-  </link>
-
-  <joint name="gripper_pitch" type="revolute">
-    <parent link="pitch_control"/>
     <child link="yaw_control"/>
-    <axis xyz="0 1 0"/>
-    <limit lower="-3.14" upper="3.14" velocity="100.0" effort="1000"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
   </joint>
 
   <link name="yaw_control">
     <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
   </link>
 
   <joint name="gripper_yaw" type="revolute">
     <parent link="yaw_control"/>
-    <child link="dummy_center_indicator_link"/>
+    <child link="pitch_control"/>
     <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" velocity="100.0" effort="1000"/>
+    <limit lower="-3.14" upper="3.14" velocity="3.14" effort="1000"/>
+    <origin xyz="0.010 0 0" />
   </joint>
 
+  <link name="pitch_control">
+    <inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
+  </link>
 
+  <joint name="gripper_pitch" type="revolute">
+    <parent link="pitch_control"/>
+    <child link="roll_control"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="0" upper="3.14" velocity="3.14" effort="1000"/>
+    <origin xyz="0.010 0 0" />
+  </joint>
+
+  <link name="roll_control">
+    <inertial>
+      <mass value="1" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
+  </link>
+
+  <joint name="gripper_roll" type="revolute">
+    <parent link="roll_control"/>
+    <child link="dummy_center_indicator_link"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="3.14" velocity="3.14" effort="100000"/>
+    <origin xyz="0.140 0 0" />
+  </joint>
 
   <link name="dummy_center_indicator_link">
     <visual>
       <geometry>
-        <box size="0.002 0.085 0.002"/>
+        <box size="0.020 0.085 0.002"/>
       </geometry>
     </visual>
     <inertial>
-        <mass value="0" />
-        <inertia ixx = "0" ixy = "0" ixz = "0"
-             iyx = "0" iyy = "0" iyz = "0"
-             izx = "0" izy = "0" izz = "0" />
-      </inertial>
+      <mass value="0" />
+      <inertia ixx = "0" ixy = "0" ixz = "0"
+               iyx = "0" iyy = "0" iyz = "0"
+               izx = "0" izy = "0" izz = "0" />
+    </inertial>
   </link>
 
   <joint name="dummy_center_fixed_joint" type="fixed">
@@ -146,7 +147,7 @@
       <child link="robotiq_85_left_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="3.14 0.0 0.0" xyz="0.05490451627 0.03060114443 0.0"/>
-      <limit lower="0.0" upper="0.80285" velocity="0.5" effort="1000"/>
+      <limit lower="0.0" upper="0.80285" velocity="3.14" effort="1000"/>
     </joint>
 
     <joint name="robotiq_85_right_knuckle_joint" type="revolute">
@@ -154,7 +155,7 @@
       <child link="robotiq_85_right_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.05490451627 -0.03060114443 0.0"/>
-      <limit lower="-3.14" upper="3.14" velocity="100.0" effort="1000"/>
+      <limit lower="-3.14" upper="3.14" velocity="3.14" effort="1000"/>
       <mimic joint="robotiq_85_left_knuckle_joint"/>
     </joint>
 
@@ -255,7 +256,7 @@
       <child link="robotiq_85_left_inner_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.06142 0.0127 0" rpy="3.14 0.0 0.0" />
-      <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+      <limit lower="-3.14" upper="3.14" velocity="3.14" effort="0.1"/>
       <mimic joint="robotiq_85_left_knuckle_joint" offset="0"/>
     </joint>
 
@@ -264,7 +265,7 @@
       <child link="robotiq_85_right_inner_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.06142 -0.0127 0" rpy="0 0 0"/>
-      <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+      <limit lower="-3.14" upper="3.14" velocity="3.14" effort="0.1"/>
       <mimic joint="robotiq_85_left_knuckle_joint" offset="0"/>
     </joint>
 
@@ -312,7 +313,7 @@
       <child link="robotiq_85_left_finger_tip_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.04303959807 -0.03759940821 0.0" rpy="0.0 0.0 0.0"/>
-      <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+      <limit lower="-3.14" upper="3.14" velocity="3.14" effort="0.1"/>
       <mimic joint="robotiq_85_left_knuckle_joint" multiplier="-1"/>
     </joint>
 
@@ -321,7 +322,7 @@
       <child link="robotiq_85_right_finger_tip_link"/>
       <axis xyz="0 0 1"/>
       <origin rpy="0.0 0.0 0.0" xyz="0.04303959807 -0.03759940821  0.0"/>
-      <limit lower="-3.14" upper="3.14" velocity="100.0" effort="0.1"/>
+      <limit lower="-3.14" upper="3.14" velocity="3.14" effort="0.1"/>
       <mimic joint="robotiq_85_left_knuckle_joint" multiplier="-1"/>
     </joint>
 
