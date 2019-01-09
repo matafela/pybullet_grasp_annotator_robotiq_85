@@ -77,7 +77,7 @@ mimic_multiplier = [1, 1, 1, -1, -1]
 gripper_opening_length_control = p.addUserDebugParameter("gripper_opening_length",
                                                 0,
                                                 0.085,
-                                                0)
+                                                0.085)
 # position control
 position_control_group = []
 position_control_group.append(p.addUserDebugParameter('x', -0.5, 0.5, 0))
@@ -144,7 +144,7 @@ while (1):
 
     # key control
     keys = p.getKeyboardEvents()
-    print(keys)
+    # print(keys)
     # key "R" is down: reset the position control state to initial
     if 114 in keys:
         pass
@@ -165,7 +165,7 @@ while (1):
         #                                                                 initial_value)
 
     # key "Z" is down: print the state of dummy_center_link (for the grasp center and gripper pose)
-    if (122 in keys) and (keys[115] == 3):
+    if (122 in keys) and (keys[122] == 3):
         dummy_center_indicator_link_info = p.getLinkState(robotID, dummy_center_indicator_link_index)
         center_position = dummy_center_indicator_link_info[0]
         center_orientation = dummy_center_indicator_link_info[1]
