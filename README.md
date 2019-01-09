@@ -9,4 +9,4 @@ pip install pybullet
 python robotic_85_test.py
 
 ### in simulation
-press `S` in simulation and see the position and orientation of grasp center printed in console
+press `Z` in simulation and see the simulated position and orientation of grasp center printed in console
