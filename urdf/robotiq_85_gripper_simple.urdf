@@ -15,12 +15,12 @@
     <parent link="base_link"/>
     <child link="y_control"/>
     <axis xyz="1 0 0"/>
-    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
+    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.2"/>
   </joint>
 
   <link name="y_control">
     <inertial>
-      <mass value="0" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
@@ -31,12 +31,12 @@
     <parent link="y_control"/>
     <child link="z_control"/>
     <axis xyz="0 1 0"/>
-    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
+    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.2"/>
   </joint>
 
   <link name="z_control">
     <inertial>
-      <mass value="0" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
@@ -47,12 +47,12 @@
     <parent link="z_control"/>
     <child link="yaw_control"/>
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-0.5" upper="0.5" velocity="0.02"/>
+    <limit effort="1000.0" lower="-0.25" upper="1" velocity="0.2"/>
   </joint>
 
   <link name="yaw_control">
     <inertial>
-      <mass value="0" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
@@ -63,13 +63,13 @@
     <parent link="yaw_control"/>
     <child link="pitch_control"/>
     <axis xyz="0 0 1"/>
-    <limit lower="-3.14" upper="3.14" velocity="3.14" effort="1000"/>
-    <origin xyz="0.010 0 0" />
+    <limit lower="-31.4" upper="31.4" velocity="3.14" effort="10000"/>
+
   </joint>
 
   <link name="pitch_control">
     <inertial>
-      <mass value="0" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
@@ -80,13 +80,13 @@
     <parent link="pitch_control"/>
     <child link="roll_control"/>
     <axis xyz="0 1 0"/>
-    <limit lower="0" upper="3.14" velocity="3.14" effort="1000"/>
-    <origin xyz="0.010 0 0" />
+    <limit lower="-31.4" upper="31.4" velocity="3.14" effort="10000"/>
+
   </joint>
 
   <link name="roll_control">
     <inertial>
-      <mass value="1" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
@@ -97,8 +97,7 @@
     <parent link="roll_control"/>
     <child link="dummy_center_indicator_link"/>
     <axis xyz="1 0 0"/>
-    <limit lower="0" upper="3.14" velocity="3.14" effort="100000"/>
-    <origin xyz="0.140 0 0" />
+    <limit lower="-31.4" upper="31.4" velocity="3.14" effort="100000"/>
   </joint>
 
   <link name="dummy_center_indicator_link">
@@ -108,7 +107,7 @@
       </geometry>
     </visual>
     <inertial>
-      <mass value="0" />
+      <mass value="0.1" />
       <inertia ixx = "0" ixy = "0" ixz = "0"
                iyx = "0" iyy = "0" iyz = "0"
                izx = "0" izy = "0" izz = "0" />
