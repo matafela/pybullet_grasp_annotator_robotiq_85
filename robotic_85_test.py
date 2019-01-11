@@ -87,14 +87,12 @@ position_control_group.append(p.addUserDebugParameter('roll', -3.14, 3.14, 0))
 position_control_group.append(p.addUserDebugParameter('pitch', 0, 3.14, 1.57))
 position_control_group.append(p.addUserDebugParameter('yaw', -3.14, 3.14, 0))
 
-
 position_control_joint_name = ["center_x",
                                "center_y",
                                "center_z",
                                "gripper_roll",
                                "gripper_pitch",
                                "gripper_yaw"]
-
 
 # try:
 while (1):
@@ -177,7 +175,7 @@ while (1):
         orientation_error = []
         for i, simulated_value in enumerate(center_orientation):
             orientation_error.append(simulated_value - parameter_orientation[i])
-        print('error', position_error, '----', orientation_error)
+        print('postion and orientation error:', position_error, '----', orientation_error)
 
     p.stepSimulation()
 # except:
