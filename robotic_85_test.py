@@ -7,7 +7,6 @@ import pybullet_data
 from collections import namedtuple
 from attrdict import AttrDict
 
-
 serverMode = p.GUI # GUI/DIRECT
 robotUrdfPath = "./urdf/robotiq_85_gripper_simple.urdf"
 
